@@ -21,6 +21,7 @@
     "test:e2e": "dotenv -e .env.test -- jest --runInBand --config ./jest.e2e.config.ts"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@fastify/static": "^7.0.4",
     "@nestjs/common": "^10.3.2",
     "@nestjs/config": "^3.2.3",

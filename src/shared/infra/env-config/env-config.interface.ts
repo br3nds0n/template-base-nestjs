@@ -3,4 +3,10 @@ export interface EnvConfig {
   getNodeEnv(): string;
   getJwtSecret(): string;
   getJwtExpiresInSeconds(): number;
+  getDatabaseHost(): string;
+  getDatabasePort(): number;
+  getDatabaseUser(): string;
+  getDatabasePassword(): string;
+  getDatabaseSchema(): string;
+  getDatabaseService(): string;
 }

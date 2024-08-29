@@ -6,7 +6,23 @@ export type UserProps = {
 };
 
 export class UserEntity {
+  get name(): string {
+    return this.props.name;
+  }
+
+  get email(): string {
+    return this.props.email;
+  }
+
+  get password(): string {
+    return this.props.password;
+  }
+
+  get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
   constructor(public readonly props: UserProps) {
-    this.props.createdAt = props.createdAt || new Date();
+    // this.props.createdAt = this.props.createdAt ?? new Date();
   }
 }
