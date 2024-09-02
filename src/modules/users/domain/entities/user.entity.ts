@@ -6,6 +6,7 @@ export type UserProps = {
   email: string;
   password: string;
   createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export class UserEntity extends BaseEntity<UserProps> {
@@ -60,6 +61,10 @@ export class UserEntity extends BaseEntity<UserProps> {
 
   get createdAt(): Date {
     return this.props.createdAt;
+  }
+
+  private set createdAt(value: Date) {
+    this.props.createdAt = value;
   }
 
   static validate(props: UserProps) {
