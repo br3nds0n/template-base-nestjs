@@ -1,4 +1,4 @@
-import { EnvConfigService } from '@/shared/infra/env-config/env-config.service';
+import { EnvConfigService } from '@/common/infra/env-config/env-config.service';
 import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 
@@ -16,15 +16,14 @@ export class TypeOrmConfigProvider implements TypeOrmOptionsFactory {
       password: this.relationalDatabase.getDatabasePassword(),
       schema: this.relationalDatabase.getDatabaseSchema(),
       serviceName: this.relationalDatabase.getDatabaseService(),
-      entities: [__dirname + './../../**/*.entity-schema{.ts,.js}'],
+      entities: [__dirname + './../../../../**/*.entity-schema.{ts,js}'],
       /*
        * ⚠️Nunca utilizar esse param em produção⚠️
        *
        * O parâmetro synchronize é utilizado para
        * criar as tabelas automaticamente (Uso Local)
        */
-      synchronize:
-        this.relationalDatabase.getNodeEnv() === 'dev' ? true : false,
+      synchronize: this.relationalDatabase.getNodeEnv() === 'dev',
       logging: true,
     } as TypeOrmModuleOptions;
   }

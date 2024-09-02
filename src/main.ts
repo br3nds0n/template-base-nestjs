@@ -5,7 +5,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { Logger } from '@nestjs/common';
-import { EnvConfigService } from './shared/infra/env-config/env-config.service';
+import { EnvConfigService } from './common/infra/env-config/env-config.service';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(

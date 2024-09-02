@@ -8,9 +8,14 @@ class UserSchema extends EntitySchema<UserEntity> {
       tableName: 'user',
       target: UserEntity,
       columns: {
+        id: {
+          name: 'user_id',
+          type: 'uuid',
+          primary: true,
+          nullable: false,
+        },
         name: {
           type: 'varchar',
-          primary: true,
           length: 255,
         },
         email: {

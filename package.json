@@ -18,7 +18,8 @@
     "test:watch": "jest --watch",
     "test:cov": "dotenv -e .env.test -- jest --runInBand --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "dotenv -e .env.test -- jest --runInBand --config ./jest.e2e.config.ts"
+    "test:e2e": "dotenv -e .env.test -- jest --runInBand --config ./jest.e2e.config.ts",
+    "typeorm": "typeorm-ts-node-commonjs -d src/core/config/database/typeorm/ormconfig.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
@@ -32,10 +33,12 @@
     "@nestjs/swagger": "^7.4.0",
     "@nestjs/terminus": "^10.2.3",
     "@nestjs/typeorm": "^10.0.2",
+    "@types/uuid": "^10.0.0",
     "pg": "^8.12.0",
     "reflect-metadata": "^0.2.1",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.3.1",

@@ -1,18 +1,19 @@
-import { faker } from '@faker-js/faker';
+import { UserDataBuilder } from '../../../testing/helpers/user-data-builder';
 import { UserEntity, UserProps } from '../../user.entity';
 
-describe('UserEntity', () => {
+describe('UserEntity unit tests', () => {
+  let props: UserProps;
+  let sut: UserEntity;
+
+  beforeEach(() => {
+    props = UserDataBuilder({});
+    sut = new UserEntity(props);
+  });
+
   it('Constructor method', () => {
-    const props: UserProps = {
-      name: faker.person.fullName(),
-      email: faker.internet.email(),
-      password: faker.internet.password(),
-    };
-
-    const user = new UserEntity(props);
-
-    expect(user.props.name).toEqual(props.name);
-    expect(user.props.email).toEqual(props.email);
-    expect(user.props.password).toEqual(props.password);
+    expect(sut.props.name).toEqual(props.name);
+    expect(sut.props.email).toEqual(props.email);
+    expect(sut.props.password).toEqual(props.password);
+    expect(sut.props.createdAt).toBeInstanceOf(Date);
   });
 });
