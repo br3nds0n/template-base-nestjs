@@ -1,6 +1,5 @@
-import { BaseEntity } from '@/common';
+import { BaseEntity, EntityValidationError } from '@/common';
 import { UserValidatorFactory } from '../validators/user.validator';
-import { EntityValidationError } from '@/common/domain/erros/EntityValidationError';
 
 export type UserProps = {
   name: string;
