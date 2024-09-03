@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { HashProvider } from '@/common';
 
-import { SignupUseCase } from './app/usecases';
+import { ListUsersUseCase, SignupUseCase } from './app/usecases';
 import { UserRepository } from './domain';
 import { BcryptjsHashProvider, UserTypeormRepository } from './infra';
 
@@ -32,6 +32,13 @@ import { EntityManager } from 'typeorm';
         return new SignupUseCase.UseCase(hashProvider, userRepository);
       },
       inject: ['HashProvider', 'UserRepository'],
+    },
+    {
+      provide: ListUsersUseCase.UseCase,
+      useFactory: (userRepository: UserRepository.Repository) => {
+        return new ListUsersUseCase.UseCase(userRepository);
+      },
+      inject: ['UserRepository'],
     },
   ],
 })

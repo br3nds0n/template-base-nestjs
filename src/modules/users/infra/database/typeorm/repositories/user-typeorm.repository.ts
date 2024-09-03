@@ -1,13 +1,16 @@
 import { UserEntity, UserRepository } from '@/modules/users/domain';
 import { EntityManager, Repository } from 'typeorm';
 import { UserSchema } from '../schemas/user.entity-schema';
+import { BadRequestError, TypeormBaseRepository } from '@/common';
 
-export class UserTypeormRepository implements UserRepository.Repository {
-  private repository: Repository<UserEntity>;
-
-  sortableFields: string[];
+export class UserTypeormRepository
+  extends TypeormBaseRepository<UserEntity>
+  implements UserRepository.Repository
+{
+  protected repository: Repository<UserEntity>;
 
   constructor(manager: EntityManager) {
+    super(manager.getRepository(UserSchema));
     this.repository = manager.getRepository(UserSchema);
   }
 
@@ -15,34 +18,11 @@ export class UserTypeormRepository implements UserRepository.Repository {
     console.log(email);
     throw new Error('Method not implemented.');
   }
+
   async emailExists(email: string): Promise<void> {
     const user = await this.repository.findOne({ where: { email } });
     if (user) {
-      throw new Error('User already exists');
+      throw new BadRequestError('User already exists');
     }
-  }
-  search(
-    props: UserRepository.SearchParams,
-  ): Promise<UserRepository.SearchResult> {
-    console.log(props);
-    throw new Error('Method not implemented.');
-  }
-  findById(id: string): Promise<UserEntity> {
-    console.log(id);
-    throw new Error('Method not implemented.');
-  }
-  findAll(): Promise<UserEntity[]> {
-    throw new Error('Method not implemented.');
-  }
-  async insert(entity: UserEntity): Promise<void> {
-    await this.repository.insert(entity);
-  }
-  update(entity: UserEntity): Promise<void> {
-    console.log(entity);
-    throw new Error('Method not implemented.');
-  }
-  delete(id: string): Promise<void> {
-    console.log(id);
-    throw new Error('Method not implemented.');
   }
 }
