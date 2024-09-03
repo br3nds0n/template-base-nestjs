@@ -56,7 +56,9 @@ export class UsersController {
         },
         data: {
           type: 'array',
-          items: { $ref: getSchemaPath(UserPresenter) },
+          items: {
+            $ref: getSchemaPath(UserPresenter),
+          },
         },
       },
     },
