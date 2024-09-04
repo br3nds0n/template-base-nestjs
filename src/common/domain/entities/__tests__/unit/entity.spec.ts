@@ -1,12 +1,12 @@
 import { validate as uuidValidate } from 'uuid';
-import { Entity } from '../../entity';
+import { BaseEntity } from '../../entity';
 
 type StubProps = {
   prop1: string;
   prop2: number;
 };
 
-class StubEntity extends Entity<StubProps> {}
+class StubEntity extends BaseEntity<StubProps> {}
 
 describe('Entity unit tests', () => {
   it('Should set props and id', () => {

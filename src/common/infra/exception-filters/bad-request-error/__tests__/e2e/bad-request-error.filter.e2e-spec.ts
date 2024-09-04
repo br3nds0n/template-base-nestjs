@@ -1,18 +1,18 @@
 import { Controller, Get, INestApplication } from '@nestjs/common';
-import { NotFoundErrorFilter } from '../../not-found-error.filter';
 import request from 'supertest';
 import { Test, TestingModule } from '@nestjs/testing';
-import { NotFoundError } from '@/common/domain';
+import { BadRequestError } from '@/common/app';
+import { BadRequestErrorFilter } from '../../bad-request-error.filter';
 
 @Controller('stub')
 class StubController {
   @Get()
   index() {
-    throw new NotFoundError('UserModel not found');
+    throw new BadRequestError('Bad Request');
   }
 }
 
-describe('NotFoundErrorFilter (e2e)', () => {
+describe('BadRequestErrorFilter (e2e)', () => {
   let app: INestApplication;
   let module: TestingModule;
 
@@ -21,19 +21,19 @@ describe('NotFoundErrorFilter (e2e)', () => {
       controllers: [StubController],
     }).compile();
     app = module.createNestApplication();
-    app.useGlobalFilters(new NotFoundErrorFilter());
+    app.useGlobalFilters(new BadRequestErrorFilter());
     await app.init();
   });
 
   it('should be defined', () => {
-    expect(new NotFoundErrorFilter()).toBeDefined();
+    expect(new BadRequestErrorFilter()).toBeDefined();
   });
 
-  it('should catch a NotFoundError', () => {
-    return request(app.getHttpServer()).get('/stub').expect(404).expect({
-      statusCode: 404,
-      error: 'Not Found',
-      message: 'UserModel not found',
+  it('should catch a BadRequesError', () => {
+    return request(app.getHttpServer()).get('/stub').expect(400).expect({
+      statusCode: 400,
+      error: 'Bad Request',
+      message: 'Bad Request',
     });
   });
 });

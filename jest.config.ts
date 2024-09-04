@@ -10,7 +10,20 @@ export default {
   transform: {
     '^.+\\.(t|j)s$': 'ts-jest',
   },
-  collectCoverageFrom: ['**/*.(t|j)s'],
-  coverageDirectory: '../coverage',
+  collectCoverageFrom: [
+    '**/*.(t|j)s',
+    '!**/node_modules/**',
+    '!**/dist/**',
+    '!**/coverage/**',
+    '!**/*.module.ts',
+    '!**/*.eslintrc.js',
+    '!**/*global-config.ts',
+    '!**/*main.ts',
+    '!**/*index.ts',
+    '!**/migrations/**',
+    '!**/*.entity-schema.ts',
+    '!**/*jest.config.ts',
+  ],
+  coverageDirectory: './coverage',
   testEnvironment: 'node',
 };

@@ -14,6 +14,7 @@ export class UserEntity extends BaseEntity<UserProps> {
     public readonly props: UserProps,
     id?: string,
   ) {
+    UserEntity.validate(props);
     super(props, id);
   }
 

@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 
 @Injectable()
-export class TypeOrmConfigProvider implements TypeOrmOptionsFactory {
+export class TypeOrmConfig implements TypeOrmOptionsFactory {
   constructor(private readonly relationalDatabase: EnvConfigService) {}
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
