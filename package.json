@@ -19,7 +19,8 @@
     "test:cov": "dotenv -e .env.test -- jest --runInBand --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "dotenv -e .env.test -- jest --runInBand --config ./jest.e2e.config.ts",
-    "typeorm": "typeorm-ts-node-commonjs -d src/core/config/database/typeorm/orm.config.ts"
+    "typeorm": "typeorm-ts-node-commonjs -d src/core/config/database/typeorm/orm.config.ts",
+    "commitlint": "commitlint --edit $1"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",

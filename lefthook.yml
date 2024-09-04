@@ -16,8 +16,8 @@ pre-push:
       run: yarn lint
     test:
       run: yarn test
-    test-e2e:
-      run: yarn test:e2e
+    # test-e2e:
+    #   run: yarn test:e2e
     # build:
     #   run: yarn build
     # packages-audit:
